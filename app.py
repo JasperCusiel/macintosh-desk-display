@@ -1,9 +1,5 @@
-from calendar import c
-from operator import call
-from re import A
 import eel
 import spotipy
-import json
 
 try:
     import spotipy
