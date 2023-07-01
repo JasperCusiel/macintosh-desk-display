@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Spotify Currently Playing</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+  </head>
+  <body>
+    <script src="/static/js/displayCoverArt.js"></script>
+    <div id="album-art-background"></div>
+    <div id="now-playing-layout">
+      <div id="album-art-container">
+        <img
+          id="album-art"
+          src="/static/artwork-placeholder.png"
+          alt="Cover Art"
+        />
+      </div>
+      <div id="track-container">
+        <span id="track" text="track"></span>
+      </div>
+      <div id="artist-container">
+        <span id="artist" text="artist"></span>
+      </div>
+      <div id="album-container">
+        <span id="album" text="album"></span>
+      </div>
+    </div>
+  </body>
+</html>

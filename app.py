@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import eel
-import spotipy
-
-try:
-    import spotipy
-except ImportError:
-    print("Error: spotipy library not found")
-
-@eel.expose
-=======
 # import lyricsgenius as lg
 import spotipy
 import time
@@ -16,8 +5,8 @@ import json
 import os
 from flask import Flask, jsonify, render_template
 
-SPOTIPY_CLIENT_ID = "73404788fd19469ba44c59f7130e5b28"
-SPOTIPY_CLIENT_SECRET = "0fdbfc8a347d4cc3be81f36c80fe31d2"
+SPOTIPY_CLIENT_ID = "8a2908991bf3476193849ec660a18e22"
+SPOTIPY_CLIENT_SECRET = "95aa3215633241e2b729868ff0b4961f"
 SPOTIPY_REDIRECT_URI = "https://google.com"
 GENIUS_ACCESS_TOKEN = "Okbi1ioN5ofQ0P8B5XE2E9SUK7pU26cc8bvxsTIfRdlviikynk5elU_HSK4EDvCp"
 
@@ -56,7 +45,6 @@ def index():
 
 
 @app.route("/currently_playing_info")
->>>>>>> 32224c1 (update)
 def get_image_url():
     current_track = spotify_object.current_playback()
     if current_track is not None and current_track["is_playing"]:
@@ -68,10 +56,6 @@ def get_image_url():
             length = current["item"]["duration_ms"]
             progress = current["progress_ms"]
             album_art_url = current["item"]["album"]["images"][0]["url"]
-<<<<<<< HEAD
-            # print(album_art_url)
-=======
->>>>>>> 32224c1 (update)
 
             # Create a dictionary with the desired values
             data = {
@@ -95,35 +79,6 @@ def get_image_url():
             "is_playing": False
         }
 
-<<<<<<< HEAD
-    # Return the dictionary
-    return data
-
-
-if __name__ == '__main__':
-    SPOTIPY_CLIENT_ID = "73404788fd19469ba44c59f7130e5b28"
-    SPOTIPY_CLIENT_SECRET = "0fdbfc8a347d4cc3be81f36c80fe31d2"
-    SPOTIPY_REDIRECT_URI = "https://google.com"
-    GENIUS_ACCESS_TOKEN = "Okbi1ioN5ofQ0P8B5XE2E9SUK7pU26cc8bvxsTIfRdlviikynk5elU_HSK4EDvCp"
-
-    scope = "user-read-currently-playing user-read-playback-state"
-
-    oauth_object = spotipy.SpotifyOAuth(
-        client_id=SPOTIPY_CLIENT_ID,
-        client_secret=SPOTIPY_CLIENT_SECRET,
-        redirect_uri=SPOTIPY_REDIRECT_URI,
-        scope=scope,
-    )
-    token_dict = oauth_object.get_access_token()
-    if token_dict is not None:
-        token = token_dict["access_token"]
-    # Spotify Object
-    spotify_object = spotipy.Spotify(auth=token)
-
-
-    eel.init('web', ['.html', '.css'])
-    eel.start('index.html', size=(720, 720))
-=======
     # Return the dictionary as JSON
     return jsonify(data)
 
@@ -161,4 +116,3 @@ if __name__ == "__main__":
 
 #     elif status == "ad":
 #         time.sleep(30)
->>>>>>> 32224c1 (update)
