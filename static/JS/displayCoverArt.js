@@ -17,13 +17,14 @@ function updateImage() {
 
         const albumArt = document.getElementById("album-art");
         const albumBackground = document.getElementById("album-art-background");
-        albumArt.src = albumArtUrl; // Update the image source
+
         // albumBackground.style.backgroundImage = `url(${albumArtUrl})`;
 
         albumArt.style.opacity = 0; // Fade out the current image
         albumBackground.style.opacity = 0;
         albumArt.addEventListener("transitionend", () => {
           // albumBackground.style.backgroundImage = `url(${albumArtUrl})`;
+          albumArt.src = albumArtUrl; // Update the image source
           albumArt.onload = () => {
             albumArt.style.opacity = 1; // Fade in the new image
             albumBackground.style.opacity = 1;

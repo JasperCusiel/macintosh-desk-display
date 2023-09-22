@@ -49,6 +49,7 @@ def get_image_url():
     current_track = spotify_object.current_playback()
     if current_track is not None and current_track["is_playing"]:
         current = spotify_object.currently_playing()
+        print(current)
         if current is not None:
             artist = current["item"]["album"]["artists"][0]["name"]
             track = current["item"]["name"]
