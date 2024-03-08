@@ -1,55 +1,16 @@
-# import lyricsgenius as lg
+import eel
 import spotipy
-import time
-import json
-import os
-from flask import Flask, jsonify, render_template
 
-SPOTIPY_CLIENT_ID = "8a2908991bf3476193849ec660a18e22"
-SPOTIPY_CLIENT_SECRET = "95aa3215633241e2b729868ff0b4961f"
-SPOTIPY_REDIRECT_URI = "https://google.com"
-GENIUS_ACCESS_TOKEN = "Okbi1ioN5ofQ0P8B5XE2E9SUK7pU26cc8bvxsTIfRdlviikynk5elU_HSK4EDvCp"
+try:
+    import spotipy
+except ImportError:
+    print("Error: spotipy library not found")
 
-scope = "user-read-currently-playing user-read-playback-state"
-
-oauth_object = spotipy.SpotifyOAuth(
-    client_id=SPOTIPY_CLIENT_ID,
-    client_secret=SPOTIPY_CLIENT_SECRET,
-    redirect_uri=SPOTIPY_REDIRECT_URI,
-    scope=scope,
-)
-token = None  # Define a default value
-token_dict = oauth_object.get_access_token()
-if token_dict is not None:
-    token = token_dict["access_token"]
-    # Use the token to make API requests
-else:
-    # Handle the case where get_access_token() returned None
-    print("Error: get_access_token() returned None")
-
-# Spotify Object
-spotify_object = spotipy.Spotify(auth=token)
-
-# Genius Object
-# genius = lg.Genius(GENIUS_ACCESS_TOKEN)
-
-current = spotify_object.currently_playing()
-# print(json.dumps(playing, sort_keys=False, indent=4))
-
-app = Flask(__name__)
-
-
-@app.route("/")
-def index():
-    return render_template("index.html")
-
-
-@app.route("/currently_playing_info")
+@eel.expose
 def get_image_url():
     current_track = spotify_object.current_playback()
     if current_track is not None and current_track["is_playing"]:
         current = spotify_object.currently_playing()
-        print(current)
         if current is not None:
             artist = current["item"]["album"]["artists"][0]["name"]
             track = current["item"]["name"]
@@ -57,6 +18,7 @@ def get_image_url():
             length = current["item"]["duration_ms"]
             progress = current["progress_ms"]
             album_art_url = current["item"]["album"]["images"][0]["url"]
+            #print(album_art_url)
 
             # Create a dictionary with the desired values
             data = {
@@ -80,40 +42,68 @@ def get_image_url():
             "is_playing": False
         }
 
-    # Return the dictionary as JSON
-    return jsonify(data)
+    # Return the dictionary
+    return data
+@eel.expose
+def playerControl(functionSelect):
+    # 1 = play pause
+    # 2 = next track
+    # 3 = previouse track
+    # 4 = shuffle
+    # 5 = repeat
+    current_track = spotify_object.current_playback()
+    match functionSelect:
+        case 1: 
+            if current_track is not None and current_track["is_playing"]:
+                spotify_object.pause_playback()
+                print("pause")
+            elif current_track is not None and not current_track["is_playing"]:
+                spotify_object.start_playback()
+                print("start playback")
+            else:
+                print("playback failed")
+        case 2:
+            spotify_object.next_track()
+            print("next")
+        case 3:
+            spotify_object.previous_track()
+            print("previous")
+        case 4:
+            if current_track["shuffle_state"]:
+                spotify_object.shuffle(False)
+            else:
+                spotify_object.shuffle(True)
+            print("shuffle")
+        case 5:
+            if current_track["repeat_state"] == "off" :
+                spotify_object.repeat("context")
+                eel.change_repeat_colour(1)
+                print("repeat")
+            else:
+                spotify_object.repeat("off")
+                eel.change_repeat_colour(0)
+            
+
+if __name__ == '__main__':
+    SPOTIPY_CLIENT_ID = "0f90348c84d442aa8eb2390ac74d2c9e"
+    SPOTIPY_CLIENT_SECRET = "22d1ed6eaf674162a08b6fc96a6815c5"
+    SPOTIPY_REDIRECT_URI = "https://google.com"
+    GENIUS_ACCESS_TOKEN = "Okbi1ioN5ofQ0P8B5XE2E9SUK7pU26cc8bvxsTIfRdlviikynk5elU_HSK4EDvCp"
+
+    scope = "user-read-currently-playing user-read-playback-state user-modify-playback-state"
+
+    oauth_object = spotipy.SpotifyOAuth(
+        client_id=SPOTIPY_CLIENT_ID,
+        client_secret=SPOTIPY_CLIENT_SECRET,
+        redirect_uri=SPOTIPY_REDIRECT_URI,
+        scope=scope,
+    )
+    token_dict = oauth_object.get_access_token()
+    if token_dict is not None:
+        token = token_dict["access_token"]
+    # Spotify Object
+    spotify_object = spotipy.Spotify(auth=token)
 
 
-if __name__ == "__main__":
-    app.run(port=5000)
-
-# while True:
-#     current = spotify_object.currently_playing()
-#     status = current['currently_playing_type']
-
-#     if status == "track":
-#         artist_name = current['item']['album']['artists'][0]['name']
-#         song_title = current['item']['name']
-#         length = current['item']['duration_ms']
-#         progress = current['progress_ms']
-#         time_left = int(((length-progress)/1000))
-#         album_art_url = current['item']['album']['images'][0]['url']
-
-#         # Download the image and open it with PIL
-#         response = requests.get(album_art_url)
-#         image = Image.open(BytesIO(response.content))
-#         # Get the current time as a timestamp string
-#         timestamp = str(int(time.time()))
-
-#         # Construct the new file name with the timestamp
-#         new_file_name = 'img_' + timestamp + '.jpg'
-#         # Save the image to a file
-#         image.save(new_file_name)
-
-#         # song = genius.search_song(title=song_title, artist=artist_name)
-#         # lyrics = song.lyrics
-#        # print(lyrics)
-#         time.sleep(time_left)
-
-#     elif status == "ad":
-#         time.sleep(30)
+    eel.init('web', ['.html', '.css'])
+    eel.start('index.html', size=(720, 720))
