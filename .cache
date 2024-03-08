@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 {"access_token": "BQA9P2eXXtXfPNDchxJD-pzLc3fE2PukDSnFcD6naxNFacynBfkgrcANIStAp2GWahKPnqMey8baklnLzuASv4UIsuvydL8qmNiN2rsbr_QsFEwRyn30YlJhZ27rRD2PuAVTyD89F_yzdonadp-dk8RbzsxUJ90MufdFQWPO9lkDxYf319_1VLhf-jgRHQzA93-_ZtQ2-wYFgUcFBMhN6TuEYbI_yoa_4ay9UW9WJ6FWWOs0ggP7lM6BsU4EJ6NpBFDrMaVmA0oGC7hp1wJ8EfsgIV030ZMbJXHjIA2nnLTBiPNn3Vfy5sDZu059uA14fTPmHCQsu8y2yOqNEKVg", "token_type": "Bearer", "expires_in": 3600, "scope": "user-read-currently-playing user-read-playback-state", "expires_at": 1694580425, "refresh_token": "AQAP_W1PasWSLLcoKUs2UQiacLjbCelcAAoDvav6UbmTURGBsn1HlLDnHbhSZ5u9jNdUhz2QIyH_N7t8h0c419KC5cKLNF0rMjiKngBIOAJtU0R47ng0NGw1dEGau2CtF3g"}
 =======
 {"access_token": "BQDVPi2jLfiWqPf_Jsd47545-3Lw_ytP7IfXpgWtFtFUN8QRFxmGMsiCPQMY58574QqPnBfGn7QzQNPYw3KeRgB8mLGkW8XG04nItxkP08xrhNlAq1q3UfSnHLTX7LCjXcV05fDgF8RHCK95n8ZTjttX-tFQXwOJgYWW_hBn0_bdfX7z0WLni_T9L0bUOrHbTWHnNmyH0KNzr-grzMgkqHidkTFuTZg", "token_type": "Bearer", "expires_in": 3600, "scope": "user-read-currently-playing user-read-playback-state user-modify-playback-state", "expires_at": 1709725767, "refresh_token": "AQAisJ5ai7xoYFS1LipNq9st8IyNtUDMlQhlDRsqFNjlxdgEJpWv7FWIuRRntcaNUY8i2b1g6Xy9ya7sklaI9QUV46be7O-0Fx-PJ-bYe_bRJ9a5IItQgog1VT6rw6HJMNc"}
 >>>>>>> 8a65b64 (make more elements responsive)
+=======
+{"access_token": "BQARyD9BPounetx4qHuh0WCnB9J41gP3-fdPLf4Mp5ewnzEZq1-7QCoMuNU8L3MtsYhuhe8mVV29FO1xAXNAeHYxLeWNu9R_69kAzTCuKOdneWJzqfrFkCuWy5XsH3BqXuQgy9ED9aaHTrkBL38xNtDGFICDaUfs5YygC_FA2rDO16KsFLPiP4VlzcWDhtuNjX_bbVCvvhx6Ui_1VV6jrSePn2ekN10", "token_type": "Bearer", "expires_in": 3600, "scope": "user-read-currently-playing user-read-playback-state user-modify-playback-state", "expires_at": 1709860476, "refresh_token": "AQAisJ5ai7xoYFS1LipNq9st8IyNtUDMlQhlDRsqFNjlxdgEJpWv7FWIuRRntcaNUY8i2b1g6Xy9ya7sklaI9QUV46be7O-0Fx-PJ-bYe_bRJ9a5IItQgog1VT6rw6HJMNc"}
+>>>>>>> Stashed changes
